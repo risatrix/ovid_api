@@ -16,7 +16,7 @@ class Work(models.Model):
     title = models.CharField(max_length=128, unique=True)
     abbreviation = models.CharField(max_length=128, unique=True)
     slug = models.CharField(max_length=128, unique=True)
-    author = models.ForeignKey(Author, blank=True, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, blank=True, on_delete=models.CASCADE, related_name="authors")
 
     def __unicode__(self):
         return self.title
@@ -24,7 +24,7 @@ class Work(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=128)
     book_index = models.IntegerField()
-    work = models.ForeignKey(Work, blank=True, on_delete=models.CASCADE)
+    work = models.ForeignKey(Work, blank=True, on_delete=models.CASCADE, related_name="books")
 
     def __unicode__(self):
         return self.title
@@ -32,7 +32,7 @@ class Book(models.Model):
 class Poem(models.Model):
     title = models.CharField(max_length=128)
     poem_index = models.IntegerField()
-    book = models.ForeignKey(Book, blank=True, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, blank=True, on_delete=models.CASCADE, related_name="poems")
 
     def __unicode__(self):
         return self.title
@@ -41,7 +41,7 @@ class Line(models.Model):
     line_index = models.IntegerField()
     text = models.CharField(max_length=500, blank=True, null=True)
     meter = models.CharField(max_length=128)
-    poem = models.ForeignKey(Poem, blank=True, on_delete=models.CASCADE)
+    poem = models.ForeignKey(Poem, blank=True, on_delete=models.CASCADE, related_name="lines")
 
     def __unicode__(self):
         return self.text
