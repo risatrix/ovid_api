@@ -13,33 +13,34 @@ data = json.load(json_data)
 author = data['author']
 works = data['works']
 
-# def add_author(name, full_name, abbreviation, slug):
-#     a = Author.objects.create()
-#     a.name = name
-#     a.full_name = full_name
-#     a.abbreviation = abbreviation
-#     a.slug = slug
-#     a.save()
-#     return a
+# clear the decks so there are no conflicts
+Author.objects.all().delete()
+Work.objects.all().delete()
+Book.objects.all().delete()
+Poem.objects.all().delete()
+Line.objects.all().delete()
+
+# start with the author. There's only one to worry about for now.
+def add_author(name, full_name, abbreviation, slug):
+    a = Author.objects.create()
+    a.name = name
+    a.full_name = full_name
+    a.abbreviation = abbreviation
+    a.slug = slug
+    a.save()
+    return a
 
 name = author[0]['name']
 slug = author[1]['slug']
 full_name = author[2]['full name']
 abbreviation = author[3]['abbreviation']
 
-print works[0]['title']
-print works[0]['abbreviation']
-print works[0]['slug']
 
-# add_author(name=name, full_name=full_name, abbreviation=abbreviation, slug=slug)
-
-json_data.close()
+add_author(name=name, full_name=full_name, abbreviation=abbreviation, slug=slug)
 
 ovid = Author.objects.get(name="Ovid")
-Work.objects.all().delete()
-Book.objects.all().delete()
-Poem.objects.all().delete()
-Line.objects.all().delete()
+
+# loop through the JSON and create database objects as we go
 for idx, work in enumerate(works, start=0):
     w = Work()
     w.title = works[idx]["title"]
@@ -63,10 +64,14 @@ for idx, work in enumerate(works, start=0):
             p.save()
             lines = poem['lines']
             for line in lines:
+                print line['text']
+                print line['line_index']
                 l = Line()
                 l.text = line['text']
                 l.meter = line['meter']
                 l.line_index = line['line_index']
                 l.poem = p
                 l.save()
+
+json_data.close()
 
