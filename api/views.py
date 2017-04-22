@@ -3,4 +3,22 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-# Create your views here.
+from api.models import Author, Work, Book, Poem, Line
+from rest_framework import viewsets
+from api.serializers import LineSerializer, WorkSerializer
+
+
+class LineViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Line.objects.all()[10:]
+    serializer_class = LineSerializer
+
+
+class WorkViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Work.objects.all()
+    serializer_class = WorkSerializer
