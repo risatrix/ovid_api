@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 from api.models import Author, Work, Book, Poem, Line
 from rest_framework import viewsets
-from api.serializers import LineSerializer, WorkSerializer
+from api.serializers import LineSerializer, WorkSerializer, PoemSerializer
 
 
 class LineViewSet(viewsets.ModelViewSet):
@@ -22,3 +22,10 @@ class WorkViewSet(viewsets.ModelViewSet):
     """
     queryset = Work.objects.all()
     serializer_class = WorkSerializer
+
+class PoemViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Poem.objects.all()[1:]
+    serializer_class = PoemSerializer

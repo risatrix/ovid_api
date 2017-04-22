@@ -25,6 +25,8 @@ from rest_framework import routers, serializers, viewsets
 router = routers.DefaultRouter()
 router.register(r'lines', LineViewSet)
 router.register(r'works', WorkViewSet)
+router.register(r'poems', PoemViewSet)
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

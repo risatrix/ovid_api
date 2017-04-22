@@ -12,3 +12,8 @@ class WorkSerializer(serializers.HyperlinkedModelSerializer):
         model = Work
         fields = ('title', 'abbreviation')
 
+class PoemSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Poem
+        fields = ('title', 'lines')
+
