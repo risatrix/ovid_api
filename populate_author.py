@@ -13,20 +13,24 @@ data = json.load(json_data)
 author = data['author']
 works = data['works']
 
-def add_author(name, full_name, abbreviation, slug):
-    a = Author.objects.create()
-    a.name = name
-    a.full_name = full_name
-    a.abbreviation = abbreviation
-    a.slug = slug
-    a.save()
-    return a
+# def add_author(name, full_name, abbreviation, slug):
+#     a = Author.objects.create()
+#     a.name = name
+#     a.full_name = full_name
+#     a.abbreviation = abbreviation
+#     a.slug = slug
+#     a.save()
+#     return a
 
 name = author[0]['name']
 slug = author[1]['slug']
 full_name = author[2]['full name']
 abbreviation = author[3]['abbreviation']
 
-add_author(name=name, full_name=full_name, abbreviation=abbreviation, slug=slug)
+print works[0]['title']
+print works[0]['abbreviation']
+print works[0]['slug']
+
+# add_author(name=name, full_name=full_name, abbreviation=abbreviation, slug=slug)
 
 json_data.close()
