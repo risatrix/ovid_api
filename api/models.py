@@ -16,7 +16,7 @@ class Work(models.Model):
     title = models.CharField(max_length=128, unique=True)
     abbreviation = models.CharField(max_length=128, unique=True)
     slug = models.CharField(max_length=128, unique=True)
-    author = models.ForeignKey(Author, blank=True, on_delete=models.CASCADE, related_name="authors")
+    author = models.ForeignKey(Author, blank=True, on_delete=models.CASCADE, related_name="works")
 
     def __unicode__(self):
         return self.title

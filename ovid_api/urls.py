@@ -26,6 +26,7 @@ router = routers.DefaultRouter()
 router.register(r'lines', LineViewSet)
 router.register(r'works', WorkViewSet)
 router.register(r'poems', PoemViewSet)
+router.register(r'authors', AuthorViewSet)
 
 
 urlpatterns = [
