@@ -27,6 +27,6 @@ slug = author[1]['slug']
 full_name = author[2]['full name']
 abbreviation = author[3]['abbreviation']
 
-add_author(name=name, full_name=full_name, abbrev=abbreviation, slug=slug)
+add_author(name=name, full_name=full_name, abbreviation=abbreviation, slug=slug)
 
 json_data.close()
