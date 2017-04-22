@@ -39,8 +39,8 @@ class Poem(models.Model):
 
 class Line(models.Model):
     line_index = models.IntegerField()
-    text = models.CharField(max_length=500, unique=True)
-    meter = models.CharField(max_length=128, unique=True)
+    text = models.CharField(max_length=500)
+    meter = models.CharField(max_length=128)
     poem = models.ForeignKey(Poem, blank=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
