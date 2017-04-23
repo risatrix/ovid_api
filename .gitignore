@@ -1,2 +1,7 @@
+/settings/*
+/ovid_api/settings/*
+
 *.pyc
 *.pyo
+
+*.sqlite3
