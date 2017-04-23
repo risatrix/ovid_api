@@ -1,3 +1,6 @@
+/settings/*
+/ovid_api/settings/*
+
 *.pyc
 *.pyo
 
