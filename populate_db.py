@@ -1,5 +1,5 @@
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ovid_api.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ovid_api.settings.base")
 
 import django
 django.setup()
