@@ -44,7 +44,19 @@ class WorkViewSet(viewsets.ViewSet):
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
+
     serializer_class = BookSerializer
+
+    def list(self, request, author_pk=None, work_pk=None):
+        queryset = Book.objects.filter(work__author = author_pk, work=work_pk)
+        serializer = BookSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None, author_pk=None, work_pk=None):
+        queryset = Book.objects.filter(pk=pk,work=work_pk, work__author=work_pk)
+        book = get_object_or_404(queryset, pk=pk)
+        serializer = BookSerializer(book)
+        return Response(serializer.data)
 
 class LineViewSet(viewsets.ModelViewSet):
     queryset = Line.objects.all()[10:]
