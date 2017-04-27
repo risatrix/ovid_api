@@ -7,7 +7,8 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Author
-        fields = ('name', 'full_name', 'works')
+        fields = ('name', 'full_name', 'works', 'slug')
+        lookup_field = 'slug'
 
 class BookSerializer(serializers.HyperlinkedModelSerializer):
     poems = serializers.StringRelatedField(many=True)

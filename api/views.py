@@ -13,15 +13,17 @@ class AuthorViewSet(viewsets.ViewSet):
     queryset = Author.objects.all()
 
     serializer_class = AuthorSerializer
+    lookup_field = 'slug'
 
     def list(self, request):
         queryset = Author.objects.filter()
         serializer = AuthorSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, pk=None):
+    def retrieve(self, request, slug=None):
         queryset=Author.objects.filter()
-        author= get_object_or_404(queryset, pk=pk)
+        # author= get_object_or_404(queryset, author__slug=slug)
+        author = Author.objects.get(slug = self.kwargs['slug'])
         serializer = AuthorSerializer(author)
         return Response(serializer.data)
 
@@ -31,13 +33,13 @@ class WorkViewSet(viewsets.ViewSet):
 
     serializer_class = WorkSerializer
 
-    def list(self, request, author_pk=None):
-        queryset = Work.objects.filter(author=author_pk)
+    def list(self, request, author_slug=None):
+        queryset = Work.objects.filter(author__slug=author_slug)
         serializer = WorkSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, pk=None, author_pk=None):
-        queryset = Work.objects.filter(pk=pk,author=author_pk)
+    def retrieve(self, request, pk=None, author_slug=None):
+        queryset = Work.objects.filter(pk=pk,author__slug=author_slug)
         work = get_object_or_404(queryset, pk=pk)
         serializer = WorkSerializer(work)
         return Response(serializer.data)
@@ -47,13 +49,13 @@ class BookViewSet(viewsets.ModelViewSet):
 
     serializer_class = BookSerializer
 
-    def list(self, request, author_pk=None, work_pk=None):
-        queryset = Book.objects.filter(work__author = author_pk, work=work_pk)
+    def list(self, request, author_slug=None, work_pk=None):
+        queryset = Book.objects.filter(work__author__slug = author_slug, work=work_pk)
         serializer = BookSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, pk=None, author_pk=None, work_pk=None):
-        queryset = Book.objects.filter(pk=pk,work=work_pk, work__author=work_pk)
+    def retrieve(self, request, pk=None, author_slug=None, work_pk=None):
+        queryset = Book.objects.filter(pk=pk,work=work_pk, work__author__slug=author_slug)
         book = get_object_or_404(queryset, pk=pk)
         serializer = BookSerializer(book)
         return Response(serializer.data)
