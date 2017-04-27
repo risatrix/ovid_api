@@ -23,6 +23,9 @@ from api.views import AuthorViewSet, WorkViewSet, BookViewSet
 from rest_framework import routers, serializers, viewsets
 from rest_framework_nested import routers
 
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Ovid API')
 
 router = routers.SimpleRouter()
 router.register(r'authors', AuthorViewSet, base_name="authors")
@@ -40,6 +43,7 @@ works_router.register(r'books', BookViewSet, base_name='books')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', schema_view),
     url(r'^', include(router.urls)),
     url(r'^', include(authors_router.urls)),
     url(r'^', include(works_router.urls)),
