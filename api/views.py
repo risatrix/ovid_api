@@ -9,6 +9,7 @@ from api.serializers import AuthorSerializer, BookSerializer, LineSerializer, Wo
 from rest_framework import viewsets
 from rest_framework.response import Response
 
+
 class AuthorViewSet(viewsets.ViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
@@ -43,6 +44,7 @@ class WorkViewSet(viewsets.ViewSet):
         serializer = WorkSerializer(work)
         return Response(serializer.data)
 
+
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
@@ -59,11 +61,27 @@ class BookViewSet(viewsets.ModelViewSet):
         serializer = BookSerializer(book)
         return Response(serializer.data)
 
+
+class PoemViewSet(viewsets.ModelViewSet):
+    queryset = Poem.objects.all()
+    serializer_class = PoemSerializer
+    lookup_field = 'poem_index'
+
+    def list(self, request, book_book_index=None, author_slug=None, work_slug=None):
+        work = Work.objects.filter(slug=work_slug)
+        queryset=Poem.objects.filter(book__book_index=book_book_index, book__work=work)
+        serializer = PoemSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, poem_index=None, book_book_index=None, author_slug=None, work_slug=None):
+        work = Work.objects.filter(slug=work_slug)
+        queryset = Poem.objects.filter(book__book_index=book_book_index, book__work=work)
+        poem = get_object_or_404(queryset, poem_index=poem_index)
+        serializer = PoemSerializer(poem)
+        return Response(serializer.data)
+
+
 class LineViewSet(viewsets.ModelViewSet):
     queryset = Line.objects.all()[10:]
     serializer_class = LineSerializer
-
-class PoemViewSet(viewsets.ModelViewSet):
-    queryset = Poem.objects.all()[1:]
-    serializer_class = PoemSerializer
 

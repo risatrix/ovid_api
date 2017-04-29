@@ -10,6 +10,7 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('name', 'full_name', 'works', 'slug')
         lookup_field = 'slug'
 
+
 class WorkSerializer(serializers.HyperlinkedModelSerializer):
     books = serializers.StringRelatedField(many=True)
 
@@ -27,10 +28,6 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('title', 'poems')
         lookup_field = 'book_index'
 
-class LineSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Line
-        fields = ('text', 'meter', 'line_index')
 
 class PoemSerializer(serializers.HyperlinkedModelSerializer):
     lines = serializers.StringRelatedField(many=True)
@@ -38,6 +35,15 @@ class PoemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Poem
         fields = ('title', 'lines')
+        lookup_field = 'poem_index'
+
+
+class LineSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Line
+        fields = ('text', 'meter', 'line_index')
+        lookup_field = 'poem_index'
+
 
 
 
