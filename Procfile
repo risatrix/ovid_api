@@ -1,1 +1,1 @@
-web: gunicorn ovid.wsgi --log-file -
+web: gunicorn ovid-api.wsgi --log-file -
