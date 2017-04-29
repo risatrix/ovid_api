@@ -82,6 +82,21 @@ class PoemViewSet(viewsets.ModelViewSet):
 
 
 class LineViewSet(viewsets.ModelViewSet):
-    queryset = Line.objects.all()[10:]
+    queryset = Line.objects.all()
     serializer_class = LineSerializer
+    lookup_field = 'line_index'
 
+    def list(self, request, poem_poem_index=None, book_book_index=None, author_slug=None, work_slug=None):
+        work = Work.objects.filter(slug=work_slug)
+        queryset=Line.objects.filter(poem__poem_index=poem_poem_index,
+            poem__book__book_index=book_book_index, poem__book__work=work)
+        serializer = LineSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, line_index=None, poem_poem_index=None, book_book_index=None, author_slug=None, work_slug=None):
+        work = Work.objects.filter(slug=work_slug)
+        queryset = Line.objects.filter(line_index=line_index,
+            poem__poem_index=poem_poem_index, poem__book__book_index=book_book_index, poem__book__work=work)
+        line = get_object_or_404(queryset, poem__poem_index=poem_poem_index)
+        serializer = LineSerializer(line)
+        return Response(serializer.data)
