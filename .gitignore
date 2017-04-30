@@ -2,6 +2,7 @@
 /ovid_api/settings/dev.py
 
 /ovid_api/static/*
+/ovid_api/staticfiles
 
 *.pyc
 *.pyo
