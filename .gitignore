@@ -1,8 +1,6 @@
 # ignore dev postgres settings + Debug
 /ovid_api/settings/dev.py
 
-/ovid_api/staticfiles
-
 *.pyc
 *.pyo
 
