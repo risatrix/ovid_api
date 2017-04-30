@@ -131,8 +131,9 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
-# for development -- coment out for prod.
-try:
-    from .dev import *
-except ImportError:
-    pass
+# for development settings
+if os.environ.get('ENVIRONMENT')=='dev':
+    try:
+        from .dev import *
+    except ImportError:
+        pass
