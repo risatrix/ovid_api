@@ -1,9 +1,9 @@
-/ovid_api/settings/*
+# ignore dev postgres settings + Debug
+/ovid_api/settings/dev.py
 
 *.pyc
 *.pyo
 
 *.sqlite3
 
-venv
 .env
