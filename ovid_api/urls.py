@@ -18,7 +18,7 @@ from django.contrib import admin
 
 
 from api.models import Author, Work, Book, Poem, Line
-from api.views import AuthorViewSet, WorkViewSet, BookViewSet, PoemViewSet, LineViewSet
+from api.views import index, AuthorViewSet, WorkViewSet, BookViewSet, PoemViewSet, LineViewSet
 
 from rest_framework import routers, serializers, viewsets
 from rest_framework_nested import routers
@@ -49,7 +49,8 @@ poems_router.register(r'lines', LineViewSet, base_name='lines')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', schema_view),
+    url(r'^$', index),
+    # url(r'^$', schema_view),
     url(r'^', include(router.urls)),
     url(r'^', include(authors_router.urls)),
     url(r'^', include(works_router.urls)),

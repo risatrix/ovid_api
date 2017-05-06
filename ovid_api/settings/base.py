@@ -13,6 +13,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -52,10 +53,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ovid_api.urls'
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR, ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,6 +133,19 @@ REST_FRAMEWORK = {
     ],
     'PAGE_SIZE': 10
 }
+
+print 'BASE_DIR:'
+print BASE_DIR
+print 'file paths: '
+print(__file__)
+print(os.path.dirname(__file__))
+print(os.path.dirname(os.path.dirname(__file__)))
+print(os.path.dirname(__file__))
+print(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+print 'TEMPLATE_DIR:'
+print TEMPLATE_DIR
+print 'PROJECT_ROOT:'
+print PROJECT_ROOT
 
 # for development settings
 if os.environ.get('ENVIRONMENT')=='dev':

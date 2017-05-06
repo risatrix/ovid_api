@@ -10,6 +10,11 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 
+def index(request):
+     context_dict = {}
+     return render(request, 'ovid_api/index.html', context=context_dict)
+
+
 class AuthorViewSet(viewsets.ViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
