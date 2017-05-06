@@ -134,19 +134,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
-print 'BASE_DIR:'
-print BASE_DIR
-print 'file paths: '
-print(__file__)
-print(os.path.dirname(__file__))
-print(os.path.dirname(os.path.dirname(__file__)))
-print(os.path.dirname(__file__))
-print(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-print 'TEMPLATE_DIR:'
-print TEMPLATE_DIR
-print 'PROJECT_ROOT:'
-print PROJECT_ROOT
-
 # for development settings
 if os.environ.get('ENVIRONMENT')=='dev':
     try:
