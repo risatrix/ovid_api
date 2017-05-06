@@ -1,15 +1,67 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>Ovid</title>
-    </head>
+	<head>
+		<title>Ovid</title>
+		<link rel="stylesheet" href="http://elotroalex.github.io/ed/public/css/syntax.css"/>
+		<link rel="stylesheet" href="http://elotroalex.github.io/ed/public/css/ed.css"/>
+	</head>
 
-    <body>
-        <h1>Hello</h1>
-        <div>
-            there.
-        </div>
-    </body>
+	<body>
+		<div class="wrap">
+			<div class="masthead">
+				<div class="container">
+					<h3 class="masthead-title">
+							An API for Ovid
+							<br><small>Ovid's love poetry in a simplified, code-friendly structure</small>
+					</h3>
+				</div>
+			</div>
+
+			<div class="container content" id="main">
+					<div class="introduction">
+							<h2>About this Site</h2>
+
+							<p>This site serves as a place to grab Ovid's poetry with code. Using it assumes some knowledge of API's, but I'll try to lay things out for
+                people who haven't done that before. If you are familiar with APIs, you might want to look directly at the docs page.</p>
+          </div>
+
+          <hr>
+          <h2>Why Do I Care?</h2>
+          <p>If you need material for a bot project, or a Javascript project, or whatever else, it's here.</h2>
+
+          <hr>
+          <h2>How do I use this thing?</h2>
+
+          <p>To get a list of all works, try: <code>/authors/ovid/works/</code></p>
+
+          <p>The author and work use an all lower case slug, and everything else is numbers. </p>
+          <p>To get a poem, you need to use a book number and poem number, <em>even if that's not how you'd traditionally cite the poem.</em></p>
+
+          <p>So, the same way you'd use: <code>/authors/ovid/works/amores/books/1/</code></p>
+
+          <p>You need to add a book number: <code>/authors/ovid/works/heroides/books/1/</code></p>
+
+          <p>To get a particular line: <code>/authors/ovid/works/ars/books/2/lines/34/</code>
+
+          If you already know what you want you can use the short version, remembering to include the book and poem number:
+          <code>/ovid/medicamina/1/1/34</code>
+          </p>
+
+
+          <hr>
+          <h2>Technical details</h2>
+          To get the results in JSON for your code, you need to add <code>=json</code> to the end of the url.
+
+          <hr>
+          <h2>Acknowledgements</h2>
+          The material for this site was originally XML created by the Perseus project.
+          The styling for this page comes from the <a href="http://elotroalex.github.io/ed/">Ed Jekyll theme</a>.
+          This API site is Django, and uses the REST API and Swagger documentation.
+			</div>
+
+		</div>
+
+	</body>
 
 </html>
