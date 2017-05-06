@@ -50,7 +50,7 @@ poems_router.register(r'lines', LineViewSet, base_name='lines')
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index),
-    # url(r'^$', schema_view),
+    url(r'^docs/$', schema_view, name='docs'),
     url(r'^', include(router.urls)),
     url(r'^', include(authors_router.urls)),
     url(r'^', include(works_router.urls)),
@@ -64,6 +64,6 @@ urlpatterns = [
     url(r'^(?P<author_slug>[0-9a-zA-Z_-]+)/(?P<work_slug>[0-9a-zA-Z_-]+)/(?P<book_book_index>\d+)/(?P<poem_index>\d+)/$',
         PoemViewSet.as_view({'get':'retrieve'}), name='poem-shortcut'),
      url(r'^(?P<author_slug>[0-9a-zA-Z_-]+)/(?P<work_slug>[0-9a-zA-Z_-]+)/(?P<book_book_index>\d+)/(?P<poem_poem_index>\d+)/(?P<line_index>\d+)/$',
-        LineViewSet.as_view({'get':'retrieve'}), name='poem-shortcut'),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+        LineViewSet.as_view({'get':'retrieve'}), name='line-shortcut'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
