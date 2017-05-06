@@ -55,5 +55,14 @@ urlpatterns = [
     url(r'^', include(works_router.urls)),
     url(r'^', include(books_router.urls)),
     url(r'^', include(poems_router.urls)),
+    # shortcut urls for the views
+    url(r'^(?P<slug>[0-9a-zA-Z_-]+)/$', AuthorViewSet.as_view({'get':'retrieve'}), name='author-shortcut'),
+    url(r'^(?P<author_slug>[0-9a-zA-Z_-]+)/(?P<slug>[0-9a-zA-Z_-]+)/$', WorkViewSet.as_view({'get':'retrieve'}), name='work-shortcut'),
+    url(r'^(?P<author_slug>[0-9a-zA-Z_-]+)/(?P<work_slug>[0-9a-zA-Z_-]+)/(?P<book_index>\d+)/$',
+        BookViewSet.as_view({'get':'retrieve'}), name='book-shortcut'),
+    url(r'^(?P<author_slug>[0-9a-zA-Z_-]+)/(?P<work_slug>[0-9a-zA-Z_-]+)/(?P<book_book_index>\d+)/(?P<poem_index>\d+)/$',
+        PoemViewSet.as_view({'get':'retrieve'}), name='poem-shortcut'),
+     url(r'^(?P<author_slug>[0-9a-zA-Z_-]+)/(?P<work_slug>[0-9a-zA-Z_-]+)/(?P<book_book_index>\d+)/(?P<poem_poem_index>\d+)/(?P<line_index>\d+)/$',
+        LineViewSet.as_view({'get':'retrieve'}), name='poem-shortcut'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
