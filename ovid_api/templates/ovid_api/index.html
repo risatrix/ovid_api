@@ -9,7 +9,8 @@
 
 	<body>
 		<div class="wrap">
-			<div class="masthead">
+
+      <div class="masthead">
 				<div class="container">
 					<h3 class="masthead-title">
 							An API for Ovid
@@ -22,45 +23,64 @@
 					<div class="introduction">
 							<h2>About this Site</h2>
 
-							<p>This site serves as a place to grab Ovid's poetry with code. Using it assumes some knowledge of API's, but I'll try to lay things out for
-                people who haven't done that before. If you are familiar with APIs, you might want to look directly at the docs page.</p>
+							<p>This site is a structured, machine-friendly way to serve Ovid's poetry. Using it assumes some knowledge of API's, but I'll try to lay things out here for people who haven't done that before. If you are familiar with APIs, or if you want to explore in a formal fashion, you might want to look directly at the docs page.</p>
+              <p>Currently the site only has Ovid's love poems, but I'll be adding translations and other poems.</p>
           </div>
 
           <hr>
-          <h2>Why Do I Care?</h2>
-          <p>If you need material for a bot project, or a Javascript project, or whatever else, it's here.</h2>
+          <h2>Why should I care about Ovid? Or APIs?</h2>
+          <p>I wrote an <a href="http://techintranslation.com/digital-humanities-dead-languages-and-real-world-web-business-or-how-do-i-get-ovid-on-twitter/">overly-long post</a> on why I care here. You may or may not agree.</p>
+
+          <p>If you need ancient material for a bot project, or a Javascript project, or whatever else, it's here. Otherwise, it's
+            the world's least interesting content engineering/art project.</p>
 
           <hr>
           <h2>How do I use this thing?</h2>
 
-          <p>To get a list of all works, try: <code>/authors/ovid/works/</code></p>
+          <p>To get a list of all Ovid's works, use this url (it's clickable):
+          <br>
+          <code><a href="/authors/ovid/works/" target="_blank">/authors/ovid/works/</a></code></p>
 
-          <p>The author and work use an all lower case slug, and everything else is numbers. </p>
+          <p>You'll note that in that list, there is a slug (a short, all-lower-case word) listed for the work. You'll use that to fetch further information from the work. The author and work use slugs, and everything else will be numbers. Indices, to be precise, since they indicate the expected order of a book, poem, or line. </p>
+
           <p>To get a poem, you need to use a book number and poem number, <em>even if that's not how you'd traditionally cite the poem.</em></p>
 
-          <p>So, the same way you'd use: <code>/authors/ovid/works/amores/books/1/</code></p>
+          <p>For instance, you get <em>Amores</em>, Book 1 like this:<code>
+            <a href="/authors/ovid/works/amores/books/1/" target="_blank">
+              /authors/ovid/works/amores/books/1/
+            </a></code></p>
 
-          <p>You need to add a book number: <code>/authors/ovid/works/heroides/books/1/</code></p>
+          <p>And you also need to add a book number to works that have books, like the <em>Heroides</em>:
+            <code><a href="/authors/ovid/works/heroides/books/1/" target="_blank">/authors/ovid/works/heroides/books/1/</a></code></p>
 
-          <p>To get a particular line: <code>/authors/ovid/works/ars/books/2/lines/34/</code>
+          <p>To get a particular line: <code><a href="/authors/ovid/works/ars/books/1/lines/34/"  target="_blank">/authors/ovid/works/ars/books/1/lines/34/</a></code>
 
-          If you already know what you want you can use the short version, remembering to include the book and poem number:
-          <code>/ovid/medicamina/1/1/34</code>
+          <p>If you already know what you want, you can use the short version, remembering to include the book and poem number when needed. You basically fill in the blanks with this structure:
+          <br>
+          <code>/{author}/{work}/{book number}/{poem number}/{line number}</code></p>
+          <p>Which becomes:</p>
+          <code><a href="/ovid/medicamina/1/1/34/"  target="_blank">/ovid/medicamina/1/1/34/</a></code>
           </p>
 
+          <p>To get the results in JSON for your code, you need to add <code>?format=json</code> to the end of the url:</p>
+
+          <code><a href="/ovid/medicamina/1/1/34/?format=json">/ovid/medicamina/1/1/34/?format=json</a></code>
 
           <hr>
           <h2>Technical details</h2>
-          To get the results in JSON for your code, you need to add <code>=json</code> to the end of the url.
+          <p>All requests are GET.</p>
+          <p>This site runs on Django, and uses the REST API and Swagger documentation.</p>
+          <p>The repo is <a href="https://github.com/risatrix/ovid_api">here</a>.</p>
+          <p>The best way to contact me is <a href="https://twitter.com/risatrix">here</a>.</p>
 
           <hr>
           <h2>Acknowledgements</h2>
-          The material for this site was originally XML created by the Perseus project.
-          The styling for this page comes from the <a href="http://elotroalex.github.io/ed/">Ed Jekyll theme</a>.
-          This API site is Django, and uses the REST API and Swagger documentation.
-			</div>
+          <p>The material for this site was originally XML created by the <a href="http://www.perseus.tufts.edu/hopper/">Perseus project</a>.</p>
+          <p>The styling for this page comes from the <a href="http://elotroalex.github.io/ed/">Ed Jekyll theme</a>.</p>
+          <p>The inspiration for the site came from the <a href="http://aeneid.eu/api/">Aeneid API</a>, which is the only other Classics API I know about.</p>
+			</div><!--end container-->
 
-		</div>
+		</div><!--end wrap-->
 
 	</body>
 
